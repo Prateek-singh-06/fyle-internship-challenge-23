@@ -19,18 +19,16 @@ export class ApiService {
 
   getUser(githubUsername: string|null) {
     this.url="https://api.github.com/users/"+githubUsername;
-    // const headers = { 'Authorization': 'Bearer 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'};
+    
     console.log(githubUsername);
     return this.httpClient.get(this.url);
   }
   changeUserData(data: any) {
     this.userData.next(data);
-    // console.log(data);
   }
 
   getrepo(repoPerPage:number|null,pageNO:number|null){
-    // console.log("called");
-    // const headers = { 'Authorization': 'Bearer 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'};
+    
     const cachedResponse = this.cache.get(`${this.url}/repos?per_page=${repoPerPage}&page=${pageNO}`);
     if(cachedResponse)
       {
