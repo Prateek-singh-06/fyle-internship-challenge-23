@@ -12,6 +12,11 @@ export class AppComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+    this.apiService.getUser('Prateek-singh-06').subscribe(data=>{
+      this.apiService.changeUserData(data)
+    });
+    this.apiService.getrepo(10,1).subscribe(data=>{
+      this.apiService.changeRepo(data);
+    })
   }
 }

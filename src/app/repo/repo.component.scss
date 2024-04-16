@@ -1,0 +1,20 @@
+/* This will affect the scrollbar in elements with the class scrollBar */
+.scrollBar::-webkit-scrollbar {
+    height: 1px;
+    /* Decrease width */
+}
+
+/* Track */
+.scrollBar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.scrollBar::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+.scrollBar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
