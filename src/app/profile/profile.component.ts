@@ -3,12 +3,12 @@ import { ApiService } from '../services/api.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 interface UserData {
-  name: string;
-  bio:string;
-  location: string;
+  name: string|null;
+  bio:string|null;
+  location: string|null;
   avatar_url:string;
   html_url:string;
-  twitter_username:string;
+  twitter_username:string|null;
 }
 
 @Component({

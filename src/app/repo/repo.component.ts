@@ -4,7 +4,7 @@ interface RepoData{
   name:string;
   visibility:string;
   html_url:string;
-  language:string;
+  language:string|null;
 }
 
 @Component({
@@ -45,7 +45,6 @@ export class RepoComponent {
     this.apiService.getrepo(this.selectedNumber,this.pageNumber).subscribe(data=>{
       if(data.length>0){
         this.apiService.changeRepo(data)
-        console.log("no repo");
       }
       else{
         this.pageNumber=this.pageNumber-1;
@@ -71,16 +70,7 @@ export class RepoComponent {
   ngOnInit(){
     this.apiService.currentrepos.subscribe((data:RepoData[]) => {
       if (data !== null) {
-        this.allrepoData=[];
-        data.map((item)=>{
-          this.repoData={name:"",
-                          visibility:"",
-                          html_url:"",
-                          language:"",
-                        };
-          Object.assign(this.repoData, item);
-          this.allrepoData.push(this.repoData); 
-        })
+        this.allrepoData=data;
       }
       console.log(this.allrepoData);
     });
