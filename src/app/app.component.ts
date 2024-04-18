@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
-import { Title } from '@angular/platform-browser';
-import { ProfileComponent } from './profile/profile.component';
+
 
 
 @Component({
@@ -13,15 +12,10 @@ export class AppComponent implements OnInit{
 
   title='fyle-frontend-challenge';
 
-  constructor(
-    private apiService: ApiService,
-    private titleService: Title
-  ) {
-    this.titleService.setTitle('fyle-frontend-challenge');
-  }
+  constructor(private apiService: ApiService) {}
 
 
-
+// to show my default repo when the websit is opned
   ngOnInit() {
     this.apiService.getUser('Prateek-singh-06').subscribe(data=>{
       this.apiService.changeUserData(data)

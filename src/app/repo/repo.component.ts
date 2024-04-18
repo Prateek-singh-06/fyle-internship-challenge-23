@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
+
+// Define the RepoData interface
 interface RepoData{
   name:string;
   visibility:string;
@@ -13,7 +15,7 @@ interface RepoData{
   styleUrls: ['./repo.component.scss']
 })
 export class RepoComponent {
-
+  //this array is the option to select to select total no of repo per page
   numbers = Array.from({length: 10}, (_, i) => (i + 1) * 10);
   selectedNumber = this.numbers[0];
   pageNumber:number=1;
@@ -24,9 +26,10 @@ export class RepoComponent {
     language:"",
   }
   allrepoData:RepoData[]=[];
-  currentNumber:number=1;
   perpage:number=10;
+  constructor(private apiService:ApiService){}
   
+  // Function to handle previous page click
   onPreviousClicked(){
     if(this.pageNumber>1){
     this.pageNumber=this.pageNumber-1
@@ -39,6 +42,8 @@ export class RepoComponent {
     })
   }
   }
+
+  // Function to handle next page click
   onNextClicked(){
     this.pageNumber=this.pageNumber+1
     this.perpage=this.selectedNumber;
@@ -52,11 +57,10 @@ export class RepoComponent {
 
     })
   }
+  // Function to handle option change(user changes the no. of repo per page)
   onOptionChange(option:any){
     this.perpage=this.selectedNumber;
-    console.log("hello");
     this.apiService.getrepo(this.selectedNumber,this.pageNumber).subscribe(data=>{
-      // console.log(data);
       if(data){
         this.apiService.changeRepo(data)
       }
@@ -65,16 +69,15 @@ export class RepoComponent {
     
   }
 
-  constructor(private apiService:ApiService){}
-
+// Function to initialize component
   ngOnInit(){
     this.apiService.currentrepos.subscribe((data:RepoData[]) => {
       if (data !== null) {
         this.allrepoData=data;
       }
-      console.log(this.allrepoData);
+      
     });
-    // console.log(this.userData);
+    
   }
 
 }

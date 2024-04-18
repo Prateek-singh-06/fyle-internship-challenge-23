@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
+// Define the UserData interface
 interface UserData {
   name: string|null;
   bio:string|null;
@@ -18,10 +19,12 @@ interface UserData {
 })
 export class ProfileComponent implements OnInit {
 
+  // Initialize form with default username
   form = new FormGroup({
   name: new FormControl("Prateek-singh-06")
   });
 
+  // Initialize user data
   userData: UserData = {
   name: "",
   bio: "",
@@ -34,14 +37,12 @@ export class ProfileComponent implements OnInit {
 
 constructor(private apiService:ApiService){}
 
-// handle search 
+// Function to handle form submission (submission of username)
 onSubmit() {
-  console.log(this.form.value); 
   let username:string|null=this.form.value.name||null;
   if(username!=null){
+    // Fetch user data and update service
     this.apiService.getUser(username).subscribe(data=>{
-      console.log(data);
-      
       if(data)
       {
         this.apiService.changeUserData(data)
@@ -49,8 +50,8 @@ onSubmit() {
       
     });
     
+    // Fetch repository data and update service
     this.apiService.getrepo(10,1).subscribe(data=>{
-      // console.log(data);
       if(data){
         this.apiService.changeRepo(data)
       }
@@ -60,15 +61,15 @@ onSubmit() {
   
 }
 
-  // retriver changed data in service
+  // Function to initialize component and subscribe to user data changes
   ngOnInit(){
     this.apiService.currentUserData.subscribe(data => {
       if (data !== null) {
         Object.assign(this.userData, data);
-        // console.log(this.userData);
+        
       }
     });
-    // console.log(this.userData);
+    
   }
 
 
