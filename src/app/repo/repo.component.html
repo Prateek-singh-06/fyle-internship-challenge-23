@@ -16,7 +16,7 @@
     </select>
   </div>
 
-  <div class="grid grid-cols-3">
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
     <div
       class="inline-block bg-gray-900 shadow-sm rounded-lg m-4"
       *ngFor="let item of allrepoData"
@@ -27,7 +27,7 @@
             {{ item.name }}
           </h2>
           <div
-            class="text-black mb-4 py-1 px-3 mr-7 rounded-full font-bold bg-white text-center"
+            class="text-black h-fit mt-1 py-1 px-3 mr-7 rounded-full font-bold bg-white text-center"
           >
             {{ item.visibility }}
           </div>
